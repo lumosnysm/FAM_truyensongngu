@@ -1,0 +1,24 @@
+<div class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <ul>
+              <% @users.each do |t|%>
+              <li>
+                <%= t.first_name%><%= t.last_name%><%= t.email%>
+              </li>
+              <%end%>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul>
+              <% @binhluans.each do |t|%>
+              <li>
+                <%= t.content%><%= t.truyen_id%><%= t.user_id%>
+              </li>
+              <%end%>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>

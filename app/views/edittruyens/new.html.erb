@@ -1,5 +1,5 @@
 <h1>up Truyện</h1>
-<%= form_for(@truyen) do |f| %>
+<%= form_for @truyen do |f| %>
 <div class="col-sm-8">
   <p>
     <%= f.label :name_vn  %><br>
@@ -34,7 +34,7 @@
     <br>
     <%= f.text_field :theloai_id ,class: "form-control"%>
   </p>
-  <%= f.submit "UP truyện",class: "btn btn-default" %>
+  <%= f.submit "OK",class: "btn btn-default" %>
 </div>
 <% end %>
 <a href="<%=themtheloai_path%>" class="btn btn-default">cập nhật thêm thể loại<a>
