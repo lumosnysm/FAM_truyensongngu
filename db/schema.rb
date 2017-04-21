@@ -10,15 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170327172520) do
+ActiveRecord::Schema.define(version: 20170329115643) do
 
-  create_table "comments", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci" do |t|
-    t.text     "content",   limit: 65535, null: false
-    t.datetime "create at",               null: false
-    t.integer  "id_user",                 null: false
-    t.integer  "id_truyen",               null: false
-    t.index ["id_truyen"], name: "id_truyen", using: :btree
-    t.index ["id_user"], name: "id_user", using: :btree
+  create_table "binhluans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+    t.string   "content"
+    t.integer  "truyen_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["truyen_id"], name: "index_binhluans_on_truyen_id", using: :btree
   end
 
   create_table "theloais", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
@@ -48,6 +47,4 @@ ActiveRecord::Schema.define(version: 20170327172520) do
     t.datetime "updated_at",      null: false
   end
 
-  add_foreign_key "comments", "truyens", column: "id_truyen", name: "comments_ibfk_2"
-  add_foreign_key "comments", "users", column: "id_user", name: "comments_ibfk_1"
 end

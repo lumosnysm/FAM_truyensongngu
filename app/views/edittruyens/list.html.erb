@@ -1,0 +1,8 @@
+
+
+  <h2>chọn truyện muốn edit</h2>
+  <ol>
+    <% @truyens.each do |t| %>
+    <li><a href="<%=edittruyen_path(t)%>" class="btn btn-default"><%= t.name_vn %></a></li>
+    <%end%>
+  </ol>

@@ -1,4 +1,4 @@
 class Truyen < ApplicationRecord
     belongs_to :theloai
-    has_many :comments
+    has_many :binhluans
 end

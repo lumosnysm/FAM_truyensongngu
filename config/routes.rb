@@ -5,17 +5,24 @@ Rails.application.routes.draw do
   get '/theloai/:id' => 'theloais#show' ,as: :theloai
   get '/truyen/:id' => 'truyens#show'   ,as: :truyen
   get '/new' =>'new#show'
+  get '/all' => 'truyens#all'
   get '/signup'  => 'users#new'
   resources :users
   get '/login'  => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-  get '/uptruyen' =>'truyens#new'
-  resources :truyens
+  get '/uptruyen' =>'edittruyens#new'
+  
+  post 'truyens' =>'edittruyens#create'
   get '/themtheloai' =>'theloais#new'
   resources :theloais
-  get '/edittruyen' =>'truyens#list'
+  get '/edit' =>'edittruyens#list'
   get '/admin' =>'admin#show'
-  patch '/truyen/:id' => 'truyens#update'
-  
-  end
+  get '/super' =>'admin#super'
+  patch '/truyen/:id' => 'edittruyens#update'
+  resources :truyen
+  get 'edittruyen/:id/' =>'edittruyens#edit' ,as: :edittruyen
+  resources :binhluan
+  post '/binhluans' => 'binhluans#create'
+
+end
