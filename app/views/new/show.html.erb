@@ -118,7 +118,7 @@
       </div>
     </div>
     <div class="section">
-      
+
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
@@ -170,7 +170,7 @@
                 </div>
                 <div class="col-md-2">
                   <p class="text-center">Thời diểm cập nhật:
-                    <br><%= t.updated_at.in_time_zone(7)%></p>
+                    <br><%="#{time_ago_in_words(t.updated_at.in_time_zone(7))} ago"%></p>
                     <a href="<%=truyen_path(t)%>" class="btn btn-default">Đọc truyện này<a>
                     </div>
                   </div>

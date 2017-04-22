@@ -118,7 +118,7 @@
       </div>
     </div>
     <div class="section">
-      
+
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
@@ -157,7 +157,7 @@
               <div class="col-md-3"><a href="<%=truyen_path(t)%>"><%= t.name_vn%></a></div>
               <div class="col-md-3"><a href="<%=truyen_path(t)%>"><%= t.name_en%></a></div>
               <div class="col-md-3"><%= t.theloai.title%></div>
-              <div class="col-md-3"><%= t.updated_at%></div>
+              <div class="col-md-3"><%="#{time_ago_in_words(t.updated_at.in_time_zone(7))} ago"%></div>
             </div>
             <%end%>
           </div>
