@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
   get '/uptruyen' =>'edittruyens#new'
-  
+
   post 'truyens' =>'edittruyens#create'
   get '/themtheloai' =>'theloais#new'
   resources :theloais
@@ -24,5 +24,5 @@ Rails.application.routes.draw do
   get 'edittruyen/:id/' =>'edittruyens#edit' ,as: :edittruyen
   resources :binhluan
   post '/binhluans' => 'binhluans#create'
-
+  get '/search'=>'truyens#search'
 end
