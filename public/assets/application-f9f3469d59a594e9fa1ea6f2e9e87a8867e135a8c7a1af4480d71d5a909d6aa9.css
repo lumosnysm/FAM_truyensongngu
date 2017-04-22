@@ -10,10 +10,11 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  */
+
  = require_tree .
  = require_self
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Pontano Sans');
+@import url('https://fonts.googleapis.com/css?family=Lato|Lato');
 /*!
  * Default theme for Pingendo
  * Homepage: http://pingendo.com
@@ -28,14 +29,27 @@
  * }
 */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
+
 body {
   margin: 0;
 }
+a:link {
+    color: white;
+}
+a:visited {
+    color: white;
+}
+a:hover {
+  color: yellow;
+}
+
 article,
 aside,
 details,
@@ -66,6 +80,7 @@ audio:not([controls]) {
 template {
   display: none;
 }
+
 a {
   background-color: transparent;
 }
@@ -73,6 +88,7 @@ a:active,
 a:hover {
   outline: 0;
 }
+
 abbr[title] {
   border-bottom: 1px dotted;
 }
@@ -100,6 +116,9 @@ sup {
   line-height: 0;
   position: relative;
   vertical-align: baseline;
+}
+a:hover {
+  color: yellow;
 }
 sup {
   top: -0.5em;
@@ -181,6 +200,7 @@ input[type="search"] {
   -webkit-box-sizing: content-box;
   box-sizing: content-box;
 }
+
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
@@ -1101,7 +1121,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: Pontano Sans;
+  font-family: Lato;
   font-size: 14px;
   line-height: 1.42857143;
   color: #ffffff;
@@ -1203,7 +1223,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: Montserrat;
+  font-family: Lato;
   font-weight: 500;
   line-height: 1.1;
   color: inherit;
@@ -5840,7 +5860,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: Pontano Sans;
+  font-family: Lato;
   font-size: 12px;
   font-weight: normal;
   line-height: 1.4;
@@ -5947,7 +5967,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: Pontano Sans;
+  font-family: Lato;
   font-size: 14px;
   font-weight: normal;
   line-height: 1.42857143;
@@ -6790,6 +6810,7 @@ body {
 .cover .cover-image.cover-image-fixed {
   background-attachment: fixed;
 }
+
 a:link {
     color: white;
 }
@@ -6799,4 +6820,5 @@ a:visited {
 a:hover {
   color: yellow;
 }
+
 /* PINGENDO COMMENT DO NOT REMOVE */
