@@ -28,104 +28,8 @@
     js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=235966860211494";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
-  <body>
-    <div class="navbar navbar-default navbar-fixed-top navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#"><span>Brand</span></a>
-        </div>
-        <div class="collapse navbar-collapse" id="navbar-ex-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="active">
-              <a href="<%= home_path %>">Trang Chủ<i class="fa fa-border fa-home pull-left"></i></a>
-            </li>
-            <li>
-              <a href="<%= new_path %>">Truyện Mới Cập Nhật</a>
-            </li>
-            <li>
-              <a href="<%= all_path %>">Tất Cả Các Truyện</a>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-              aria-expanded="false">Thể Loại<br><i class="fa fa-caret-down pull-right"></i></a>
-              <ul class="dropdown-menu" role="menu">
-                <% @theloais.each do |t|%>
-                <li>
-                  <a href="<%= theloai_path(t) %>"><%= t.title%></a>
-                </li>
-                <%end%>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="navbar navbar-default navbar-fixed-top navbar-inverse">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-            </div>
-            <div class="collapse navbar-collapse" id="navbar-ex-collapse">
-              <ul class="nav navbar-left navbar-nav">
-                <li class="active">
-                  <a href="<%= home_path %>">Trang Chủ<i class="fa fa-border fa-home pull-left"></i></a>
-                </li>
-                <li>
-                  <a href="<%= new_path %>">Truyện Mới Cập Nhật</a>
-                </li>
-                <li>
-                  <a href="<%= all_path %>">Tất Cả Các Truyện</a>
-                </li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                  aria-expanded="false">Thể Loại<br><i class="fa fa-caret-down pull-right"></i></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <% @theloais.each do |t|%>
-                    <li>
-                      <a href="<%= theloai_path(t) %>"><%= t.title%></a>
-                    </li>
-                    <%end%>
-                  </ul>
-                </li>
-                <% if current_user %>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                  aria-expanded="false"><%= current_user.email %><br><i class="fa fa-caret-down pull-right"></i></a>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a href="<%= logout_path%>">log out</a>"</li>
-                  </ul>
-                </li>
-              </ul>
-              <% else %>
-            </ul>
-            <% end %>
-          </ul>
-          <%= form_tag(search_path, :method => "get", id: "search-form" ,class: "navbar-form navbar-right text-left") do %>
-          <div class="form-group">
-            <%= text_field_tag :search, params[:search],class: "form-control" , :placeholder => "Tìm Kiếm"%>
 
-          </div>
-          <button type="submit" class="btn btn-default">Tìm Truyện</button>
-          <%end%>
-          <p class="navbar-right navbar-text">Truyện Song &nbsp;Ngữ
-            <br>
-          </p>
-          <% if current_user %>
-          <% else %>
-          <a class="btn btn-default navbar-btn navbar-left" data-toggle="modal" href="<%=login_path%>"><i class="fa fa-star fa-fw"></i>Đăng Nhập</a>
-          <%end%>
-        </div>
-      </div>
-    </div>
+
     <div class="section">
 
       <div class="container">
@@ -145,7 +49,6 @@
           </div>
         </div>
       </div>
-    </div>
 
       <div class="container">
         <div class="row">
@@ -173,8 +76,8 @@
         </div>
         <br>
         <div class="row">
-          <div class="col-md-6"><b class="lead"><%= simple_format(@truyen.content_vn)%></b></div>
-          <div class="col-md-6"><b class="lead"><%= simple_format(@truyen.content_en)%></b></div>
+          <div class="col-md-6"><div class="section"><b class="lead"><%= simple_format(@truyen.content_vn)%></b></div></div>
+          <div class="col-md-6"><div class="section"><b class="lead"><%= simple_format(@truyen.content_en)%></b></div></div>
         </div>
       </div>
 
@@ -190,6 +93,6 @@
       <div class="fb-comments" data-href="https://truyensongngu.herokuapp.com" data-width="100%" data-numposts="15"></div>
 
     </div>
-
+</div>
   </body>
   </html>

@@ -20,68 +20,79 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <h1 class="text-left">
-          <i class="fa fa-3x fa-fw fa-book"></i>
-          <b>
-            <i class="">Truyện Song Ngữ Anh-Việt</i>
-          </b>
-        </h1>
+
+  <div class="section">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1 class="text-left">
+            <i class="fa fa-3x fa-fw fa-book"></i>
+            <b>
+              <i class="">Truyện Song Ngữ Anh-Việt</i>
+            </b>
+          </h1>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <hr>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <hr>
+          <h1 class="text-center">Truyện Song Ngữ</h1>
+          <h2 class="text-center">Đăng Nhập</h2>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="container">
-    <div class="row">
+    <div class="container">
       <div class="col-md-12">
-        <h1 class="text-center">Truyện Song Ngữ</h1>
-        <h2 class="text-center">Đăng Nhập</h2>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-12">
-    <%= form_for(:session, url: login_path) do |f| %>
-    <div class="form-group">
-      <div class="col-md-6">
-        <div class="text-center">
-          <%= f.email_field :email, :placeholder => "EMAIL" ,class: "form-control"%>
-          <br>
+        <%= form_for(:session, url: login_path) do |f| %>
+        <div class="form-group">
+          <div class="container">
+            <div class="col-sm-4 text-right">
+              <label class="control-label">EMAIL</label>
+            </div>
+            <div class="col-sm-4">
+              <%= f.email_field :email, :placeholder => "EMAIL" ,class: "form-control"%>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="container">
+            <div class="col-sm-4 text-right">
+              <label class="control-label">MẬT KHẨU</label>
+            </div>
+            <div class="col-sm-4">
+              <%= f.password_field :password, :placeholder => "PASSWORD" ,class: "form-control"%>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="text-center">
+            <%= f.submit "ĐĂNG NHẬP", class: "btn btn-default" %>
+            <a href="<%=signup_path%>" class="btn btn-default">ĐĂNG KÝ<a>
+            </div>
+          </div>
+          <%end%>
         </div>
       </div>
-    </div>
-    <div class="form-group">
-      <div class="col-md-6">
-        <div class="text-center">
-          <%= f.password_field :password, :placeholder => "MẬT KHẨU" ,class: "form-control"%>
-          <br>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <hr>
+          </div>
+          <p>FAM-Truyện Song Ngữ</p>
         </div>
       </div>
-    </div>
-    <div class="form-group">
-      <div class="text-center">
-        <%= f.submit "ĐĂNG NHẬP", class: "btn btn-default" %>
-        <a href="<%=signup_path%>" class="btn btn-default">ĐĂNG KÝ<a>
-      </div>
-    </div>
-    <%end%>
-  </div>
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <hr>
-      </div>
-      <p>FAM-Truyện Song Ngữ</p>
     </div>
-  </div>
 
-</body>
-</html>
+  </body>
+  </html>

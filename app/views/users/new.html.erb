@@ -20,6 +20,8 @@
 </head>
 
 <body>
+<div class="section">
+
   <div class="container">
     <div class="row">
       <div class="col-md-12 text-center">
@@ -47,31 +49,55 @@
     </div>
   </div>
 
-
+<div class="container">
   <div class="col-md-12">
     <%= form_for(@user) do |f| %>
     <div class="form-group">
-      <div class="col-sm-6">
-        <%= f.text_field :first_name, :placeholder => "TÊN"  ,class: "form-control"%>
-        <br>
+      <div class="form-group">
+        <div class="container">
+          <div class="col-sm-4 text-right">
+            <label class="control-label">TÊN</label>
+          </div>
+          <div class="col-sm-4">
+            <%= f.text_field :first_name, :placeholder => "TÊN" ,class: "form-control"%>
+          </div>
+        </div>
       </div>
     </div>
     <div class="form-group">
-      <div class="col-sm-6">
-        <%= f.email_field :email, :placeholder => "EMAIL"  ,class: "form-control"%>
-        <br>
+      <div class="form-group">
+        <div class="container">
+          <div class="col-sm-4 text-right">
+            <label class="control-label">HỌ</label>
+          </div>
+          <div class="col-sm-4">
+            <%= f.text_field :last_name, :placeholder => "HỌ" ,class: "form-control"%>
+          </div>
+        </div>
       </div>
     </div>
     <div class="form-group">
-      <div class="col-sm-6">
-        <%= f.text_field :last_name, :placeholder => "HỌ"  ,class: "form-control"%>
-        <br>
+      <div class="form-group">
+        <div class="container">
+          <div class="col-sm-4 text-right">
+            <label class="control-label">EMAIL</label>
+          </div>
+          <div class="col-sm-4">
+            <%= f.email_field :email, :placeholder => "EMAIL" ,class: "form-control"%>
+          </div>
+        </div>
       </div>
     </div>
     <div class="form-group">
-      <div class="col-sm-6">
-        <%= f.password_field :password, :placeholder => "MẬT KHẨU"  ,class: "form-control"%>
-        <br>
+      <div class="form-group">
+        <div class="container">
+          <div class="col-sm-4 text-right">
+            <label class="control-label">MẬT KHẨU</label>
+          </div>
+          <div class="col-sm-4">
+            <%= f.password_field :password, :placeholder => "PASSWORD" ,class: "form-control"%>
+          </div>
+        </div>
       </div>
     </div>
     <div class="text-center">
@@ -79,6 +105,7 @@
   </div>
     <%end%>
   </div>
+</div>
 
   <div class="container">
     <div class="row">
@@ -88,6 +115,8 @@
       <p>FAM-Truyện Song Ngữ</p>
     </div>
   </div>
+
+</div>
 
 </body>
 </html>
