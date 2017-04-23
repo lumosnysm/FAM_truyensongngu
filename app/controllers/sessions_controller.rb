@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
     def new
+      @theloais=Theloai.all
     end
     def create
       @user = User.find_by_email(params[:session][:email])

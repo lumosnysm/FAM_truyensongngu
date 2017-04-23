@@ -8,6 +8,7 @@ class EdittruyensController < ApplicationController
     @truyen = Truyen.find(params[:id])
   end
   def list
+    @theloais=Theloai.all
     @truyens=Truyen.all
   end
   def create

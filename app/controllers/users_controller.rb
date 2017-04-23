@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def new
     @user = User.new
+    @theloais=Theloai.all
   end
   def create
     @user = User.new(user_params)

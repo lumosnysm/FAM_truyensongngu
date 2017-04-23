@@ -9,4 +9,9 @@ class TruyensController < ApplicationController
     @theloais=Theloai.all
     @truyens=Truyen.order("name_vn ASC")
   end
+  def search
+    @truyens = Truyen.search(params[:search])
+    @theloais=Theloai.all
+  end
+
 end
