@@ -16,11 +16,13 @@ Rails.application.routes.draw do
   post 'truyens' =>'edittruyens#create'
   get '/themtheloai' =>'theloais#new'
   resources :theloais
+  get '/xoatheloai/:id/' =>'theloais#destroy' ,as: :xoatheloai
   get '/edit' =>'edittruyens#list'
   get '/admin' =>'admin#show'
   get '/super' =>'admin#super'
   patch '/truyen/:id' => 'edittruyens#update'
   resources :truyen
+  get '/xoatruyen/:id/' =>'edittruyens#destroy' ,as: :xoatruyen
   get 'edittruyen/:id/' =>'edittruyens#edit' ,as: :edittruyen
   resources :binhluan
   post '/binhluans' => 'binhluans#create'
