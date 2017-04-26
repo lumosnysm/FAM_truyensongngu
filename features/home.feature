@@ -52,20 +52,20 @@ Feature: Home
 
     Scenario: Select "Truyện Ngắn"
       Given I am on home page
-      When I click "1. Truyện Ngắn"
+      When I click on the "1. Truyện Ngắn"
       Then I should be on "Truyện Ngắn" page
 
   Scenario: Select "Truyện Ngụ Ngôn"
     Given I am on home page
-    When I click "2. Truyện Ngụ Ngôn"
+    When I click on the "2. Truyện Ngụ Ngôn"
     Then I should be on "Truyện Ngụ Ngôn" page
 
   Scenario: Select "Truyện Ngắn"
     Given I am on home page
-    When I click "3. Truyện Cổ Tích"
+    When I click on the "3. Truyện Cổ Tích"
     Then I should be on "Truyện Cổ Tích" page
 
   Scenario: Select "Truyện Cười"
     Given I am on home page
-    When I click "4. Truyện Cười"
+    When I click on the "4. Truyện Cười"
     Then I should be on "Truyện Cười" page

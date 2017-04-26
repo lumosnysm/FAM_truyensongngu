@@ -7,7 +7,7 @@ Feature: truyenmoi
     Given I am on home page
     Then I should see "Truyện Mới Cập Nhật"
     When I click "Truyện Mới Cập Nhật"
-    Then I should see "KHÔNG BAO GIỜ BỎ CUỘC"
+    Then I should see "Trái tim"
 
   Scenario: Move mouse on a name story
     Given I am on "Truyện Mới Cập Nhật" page
