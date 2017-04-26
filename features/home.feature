@@ -1,5 +1,5 @@
 Feature: Home
-  In order to find a sotry
+  In order to find a story
   As a user
   I want to select a story
 
