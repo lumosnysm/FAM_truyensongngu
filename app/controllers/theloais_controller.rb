@@ -14,6 +14,12 @@ class TheloaisController < ApplicationController
       redirect_to '/themtheloai'
     end
   end
+  def destroy
+    @theloai = Theloai.find(params[:id])
+    @theloai.destroy
+    
+    redirect_to themtheloai_path
+  end
   private
   def theloai_params
     params.require(:theloai).permit(:title)
