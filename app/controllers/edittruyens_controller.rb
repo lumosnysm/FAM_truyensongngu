@@ -14,7 +14,7 @@ class EdittruyensController < ApplicationController
   def create
     @truyen = Truyen.new(truyen_params)
     if @truyen.save
-      redirect_to '/uptruyen'
+      redirect_to edit_path
     end
   end
   def update
@@ -27,7 +27,7 @@ class EdittruyensController < ApplicationController
     @truyen = Truyen.find(params[:id])
     @truyen.destroy
 
-    redirect_to '/edit'
+    redirect_to edit_path
   end
   private
   def truyen_params
