@@ -38,7 +38,7 @@
             <div class="col-md-12">
               <hr>
             </div>
-            <p class="lead"><%=@theloai.title%></p>
+            <center><h1 class="lead"><%=@theloai.title%></h1><center>
           </div>
         </div>
       </div>
@@ -47,7 +47,7 @@
       <div class="section">
         <div class="container">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
               <a href="<%=truyen_path(t)%>" title="<%= truncate t.content_vn, length: 400 %>"><img src="<%=t.image%>"
                 class="img-responsive"></a>
               </div>
@@ -59,7 +59,7 @@
                 <h1><a href="<%=truyen_path(t)%>" title="<%= truncate t.content_vn, length: 400 %>"><%= t.name_en %></a></h1>
                 <p><%= truncate t.content_en, length: 200 %></p>
               </div>
-              <div class="col-md-2"><p class="text-right"><p>Cập Nhật</p><%="#{time_ago_in_words(t.updated_at.in_time_zone(7))} ago"%></p></div>
+              <div class="col-md-2"><p class="text-right"><p><br><br>Cập Nhật</p><%="#{time_ago_in_words(t.updated_at.in_time_zone(7))} ago"%></p></div>
             </div>
           </div>
         </div>
