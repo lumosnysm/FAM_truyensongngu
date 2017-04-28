@@ -45,34 +45,32 @@
     <div class="section">
 
       <div class="container">
-        <p class="lead">Kết quả tìm kiếm với: <%= params[:search] %>.</p>
-        <div class="row">
-          <div class="col-md-3"><b>Tên tiếng Việt</b></div>
-          <div class="col-md-3"><b>Tên tiếng Anh</b></div>
-          <div class="col-md-3"><b>Thể loại</b></div>
-          <div class="col-md-3"><b>Thời gian cập nhật</b></div>
-          <div class="row">
-            <div class="col-md-12">
-              <hr>
-            </div>
-          </div>
+        <p class="lead">Kết quả tìm kiếm với: "<%= params[:search] %>" :</p>
         </div>
-
       </div>
 
+    <% @truyens.each do |t|%>
       <div class="section">
         <div class="container">
-          <% @truyens.each do |t|%>
           <div class="row">
-            <div class="col-md-3"><a href="<%=truyen_path(t)%>"><%= t.name_vn%></a></div>
-            <div class="col-md-3"><a href="<%=truyen_path(t)%>"><%= t.name_en%></a></div>
-            <div class="col-md-3"><%= t.theloai.title%></div>
-            <div class="col-md-3"><%="#{time_ago_in_words(t.updated_at.in_time_zone(7))} ago"%></div>
-          </div>
-          <%end%>
+            <div class="col-md-4">
+              <a href="<%=truyen_path(t)%>" title="<%= truncate t.content_vn, length: 400 %>"><img src="<%=t.image%>"
+                class="img-responsive"></a>
+              </div>
+              <div class="col-md-3">
+                <h2><a href="<%=truyen_path(t)%>" title="<%= truncate t.content_vn, length: 400 %>"><%= t.name_vn %></a></h2>
+                <p><%= truncate t.content_vn, length: 150 %></p>
+              </div>
+              <div class="col-md-3">
+                <h2><a href="<%=truyen_path(t)%>" title="<%= truncate t.content_vn, length: 400 %>"><%= t.name_en %></a></h2>
+                <p><%= truncate t.content_en, length: 150 %></p>
+              </div>
+              <div class="col-md-2"><p class="text-right"><p><br><center><%= t.theloai.title%><br><br>Cập nhật: <%="#{time_ago_in_words(t.updated_at.in_time_zone(7))} ago"%></center></div>
+            </div>
         </div>
       </div>
-      
+     <%end%>
+
     </div>
     <% else %>
     <div class="section">
