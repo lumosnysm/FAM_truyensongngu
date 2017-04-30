@@ -91,41 +91,38 @@
       </div>
 
     <footer class="section section-primary">
+	  <div class="panel-body">
+	    <%= form_for (@binhluan) do |f| %>
+	      <p>
+		<%= f.text_field :content ,class: "form-control"%>
+		<%= f.hidden_field :truyen_id, :value => @truyen.id %>
+		<% if current_user %>
+		<%= f.hidden_field :user_id, :value => @user.email%>
+		<% else %>
+		<%= f.hidden_field :user_id, :value => "anonymous"%>
+		<% end %>
+	      </p>
+	      <%= f.submit "Gửi bình luận",class: "btn btn-lg btn-success" %>
+	      <%end%>
+	    </div>
+
         <div class="background-image"></div>
         <div class="container">
           <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-primary">
-                  <div class="panel-heading">
-                    <h2 class="panel-title text-left" contenteditable="true">
-                      <i class="fa fa-star fa-fw"></i>Bình luận:</h2>
-                    </div>
-
                     <div class="container">
                       <% @binhluans.each do |t| %>
-        		<div class="">
-		          <div class="col-md-12">
-                            <h3><%= t.user_id%> : <%= t.content%></h3>
-		            <br><%= t.created_at%></br>
-		          </div>
-        	   	</div>
+			<div class="row">
+			  <div class="col-md-2"><h2 class="text"><%= t.user_id%> : </h2></div>
+			  <div class="col-md-6"><h3 class="text"><%= t.content%></h3></div>
+			</div>
+                          <p>     <%= t.created_at%></p><br>
         	     <% end %>
                     </div>
                   </div>
-		<div class="panel-body">
-                    <%= form_for (@binhluan) do |f| %>
-                      <p>
-                        <%= f.text_field :content ,class: "form-control"%>
-                        <%= f.hidden_field :truyen_id, :value => @truyen.id %>
-                        <% if current_user %>
-                        <%= f.hidden_field :user_id, :value => @user.email%>
-                        <% else %>
-                        <%= f.hidden_field :user_id, :value => "anonymous"%>
-                        <% end %>
-                      </p>
-                      <%= f.submit "Gửi bình luận",class: "btn btn-lg btn-success" %>
-                      <%end%>
-                    </div>
+
+		
                 </div>
               </div>
             </div>
