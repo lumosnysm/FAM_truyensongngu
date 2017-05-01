@@ -1,24 +1,4 @@
 # README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+ CƠ SỞ DỮ LIỆU BẢN NÀY TRÊN HÓT MỚI
+- NẾU MUỐN DÙNG CSDL CŨ DỮ LẠI FILE database.yml trong folder config
+-Nếu muốn dùng cơ sở dữ liệu mới này trên localhost/phpmyadmin thì import  file CSDL.sql bên ngoài vào.
