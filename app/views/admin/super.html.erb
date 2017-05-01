@@ -1,3 +1,14 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
+  rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="section">
 <div class="section">
       <div class="container">
         <div class="row">
@@ -5,7 +16,7 @@
             <ul>
               <% @users.each do |t|%>
               <li>
-                <%= t.first_name%><%= t.last_name%><%= t.email%>
+                <%="first name : #{t.first_name} | last name : #{t.last_name} | email : #{t.email}"%>
               </li>
               <%end%>
             </ul>
@@ -14,7 +25,8 @@
             <ul>
               <% @binhluans.each do |t|%>
               <li>
-                <%= t.content%><%= t.truyen_id%><%= t.user_id%>
+                <%="noi dung bl : #{t.content} | thuoc truyen : #{t.truyen_id} | thuoc user : #{t.user_id}"%>
+                <%= link_to 'DELETE', xoabinhluan_path(t), method: :delete ,class: "btn btn-default"%>
               </li>
               <%end%>
             </ul>
@@ -22,3 +34,6 @@
         </div>
       </div>
     </div>
+    </div>
+</body>
+</html>

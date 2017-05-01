@@ -3,6 +3,7 @@ class AdminController < ApplicationController
   	@theloais=Theloai.all
   end
   def super
+  	@truyen=Truyen.all
   	@theloais=Theloai.all
     @users=User.all
     @binhluans=Binhluan.all

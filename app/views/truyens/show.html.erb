@@ -20,53 +20,131 @@
 </head>
 
 <body>
-  <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.9&appId=235966860211494";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 
 
-    <div class="section">
-
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <h1 class="text-left">
-              <i class="fa fa-3x fa-fw fa-book"></i>
-              <b>
-                <i class="">Truyện Song Ngữ Anh-Việt</i>
-              </b>
-            </h1>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <hr>
-            </div>
-          </div>
+  <div class="section">
+    <!-- LOGO -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1 class="text-left">
+            <i class="fa fa-3x fa-fw fa-book"></i>
+            <b>
+              <i class="">Truyện Song Ngữ Anh-Việt</i>
+            </b>
+          </h1>
         </div>
-      </div>
-
-      <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <div class="panel panel-primary">
-              <div class="panel-heading">
-                <h1 class="panel-title text-warning"><%=@truyen.name_vn%> <%= @truyen.name_en%></h1>
+            <hr>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- BANG THONG KE -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-success">
+            <div class="panel-heading">
+              <h1 class="panel-title text-danger" style="color: black"><%=@truyen.name_vn%> <%= @truyen.name_en%></h1>
+            </div>
+            <div class="panel-body">
+              <div class="col-md-3">
+                <p class="text-left ">Thời điểm cập nhật :</p>
+                <p class="text-left ">Thể Loại :</p>
+                <p class="text-left ">Tên Tiếng Việt :</p>
+                <p class="text-left ">Tên Tiếng Anh :</p>
               </div>
-              <div class="panel-body">
-                <p class="text-center"><%="Thời điểm cập nhật: #{time_ago_in_words(@truyen.updated_at.in_time_zone(7))} ago"%></p>
-                <p class="text-center"><%="Thể Loại: #{@truyen.theloai.title}"%></p>
-                <p class="text-center"><%="Tên Tiếng Việt: #{@truyen.name_vn} "%></p>
-                <p class="text-center"><%="Tên Tiếng Anh: #{@truyen.name_en} "%></p>
+              <div class="col-md-3">
+                <p class="text-right "><%="#{time_ago_in_words(@truyen.updated_at.in_time_zone(7))} ago"%></p>
+                <p class="text-right "><%=@truyen.theloai.title%></p>
+                <p class="text-right "><%=@truyen.name_vn%></p>
+                <p class="text-right "><%=@truyen.name_en%></p>
+              </div>
+              <div class="col-md-6 text-center">
+                <!-- RATING -->
+                <%if current_user %>
+
+                <% if @rated === false%>
+                <div class="row">
+                  <%= form_for (@rating) do |f|%>
+                  <%= f.hidden_field :truyen_id, :value => @truyen.id %>
+                  <%= f.hidden_field :user_id, :value => current_user.try(:id)%>
+                  <fieldset class="rating">
+                    <%= f.radio_button :rate, "5",id: "star5"%><label class = "full" for="star5" title="Tuyệt Vời - 5 stars"></label>
+                    <%= f.radio_button :rate ,"4.5",id: "star4half" %><label class="half" for="star4half" title="Hay Đấy - 4.5 stars"></label>
+                    <%= f.radio_button :rate ,"4",id: "star4"%><label class = "full" for="star4" title="Khá Hay - 4 stars"></label>
+                    <%= f.radio_button :rate ,"3.5",id: "star3half" %><label class="half" for="star3half" title="Hay - 3.5 stars"></label>
+                    <%= f.radio_button :rate ,"3",id: "star3" %><label class = "full" for="star3" title="Tạm Được - 3 stars"></label>
+                    <%= f.radio_button :rate,"2.5" ,id: "star2half" %><label class="half" for="star2half" title="Có Vẻ Hơi Dở- 2.5 stars"></label>
+                    <%= f.radio_button :rate,"2" ,id: "star2" %><label class = "full" for="star2" title="Dở - 2 stars"></label>
+                    <%= f.radio_button :rate ,"1.5",id: "star1half" %><label class="half" for="star1half" title="Quá Dở - 1.5 stars"></label>
+                    <%= f.radio_button :rate ,"1",id: "star1" %><label class = "full" for="star1" title="Tồi Tệ - 1 star"></label>
+                    <%= f.radio_button :rate ,"0.5",id: "starhalf"%><label class="half" for="starhalf" title="Như CC - 0.5 stars"></label>
+                  </fieldset>
+                  <%= f.submit "Đánh Giá",class: "btn btn-default" %>
+                  <%end%>
+                </div>
+                <br>
+                <div class="row">
+                  <h3><%=" #{@average_rate} / 5 trong tổng số #{@rating_num} lượt đánh giá"%></h3>
+                </div>
+
+                <%else%>
+
+                <div class="row">
+                  <h1><%="bạn đã đánh giá  #{@user_rate}"%></h1>
+                </div>
+                <br>
+                <div class="row">
+                  <% if @rating_num != 0%>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/mid-star.png"/>
+                  <h3><%=" #{@average_rate} / 5 trong tổng số #{@rating_num} lượt đánh giá"%></h3>
+                  <%else%>
+                  <h3>Chưa có lượt đánh giá nào</h3>
+                  <%end%>
+                </div>
+                <%end%>
+
+                <%else%>
+
+                <div class="row">
+                  <%= form_for (@rating) do |f|%>
+                  <%= f.hidden_field :truyen_id, :value => @truyen.id %>
+                  <%= f.hidden_field :user_id, :value => current_user.try(:id)%>
+                  <fieldset class="rating">
+                    <%= f.radio_button :rate, "5",id: "star5"%><label class = "full" for="star5" title="Tuyệt Vời - 5 stars"></label>
+                    <%= f.radio_button :rate ,"4.5",id: "star4half" %><label class="half" for="star4half" title="Hay Đấy - 4.5 stars"></label>
+                    <%= f.radio_button :rate ,"4",id: "star4"%><label class = "full" for="star4" title="Khá Hay - 4 stars"></label>
+                    <%= f.radio_button :rate ,"3.5",id: "star3half" %><label class="half" for="star3half" title="Hay - 3.5 stars"></label>
+                    <%= f.radio_button :rate ,"3",id: "star3" %><label class = "full" for="star3" title="Tạm Được - 3 stars"></label>
+                    <%= f.radio_button :rate,"2.5" ,id: "star2half" %><label class="half" for="star2half" title="Có Vẻ Hơi Dở- 2.5 stars"></label>
+                    <%= f.radio_button :rate,"2" ,id: "star2" %><label class = "full" for="star2" title="Dở - 2 stars"></label>
+                    <%= f.radio_button :rate ,"1.5",id: "star1half" %><label class="half" for="star1half" title="Quá Dở - 1.5 stars"></label>
+                    <%= f.radio_button :rate ,"1",id: "star1" %><label class = "full" for="star1" title="Tồi Tệ - 1 star"></label>
+                    <%= f.radio_button :rate ,"0.5",id: "starhalf"%><label class="half" for="starhalf" title="Như CC - 0.5 stars"></label>
+                  </fieldset>
+                  <%end%>
+                  <a href="<%login_path%>" class= "btn btn-default">Đăng nhập để đánh giá</a>
+                </div>
+                <br>
+                <div class="row">
+                  <% if @rating_num != 0%>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/mid-star.png"/>
+                  <h3><%=" #{@average_rate} / 5 trong tổng số #{@rating_num} lượt đánh giá"%></h3>
+                  <%else%>
+                  <h3>Chưa có lượt đánh giá nào</h3>
+                  <%end%>
+                </div>
+
+                <%end%>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
 
     <div class="section">
 
@@ -81,6 +159,53 @@
         </div>
       </div>
 
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <hr>
+            <p class="lead"><%="#{@binhluan_num} bình luận"%></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="col-md-12">
+          <% if current_user %>
+          <%= form_for (@binhluan) do |f| %>
+          <%= f.text_area :content ,class: "form-control"%>
+          <%= f.hidden_field :truyen_id, :value => @truyen.id %>
+          <%= f.hidden_field :user_id, :value => "#{current_user.try(:first_name)} #{current_user.try(:last_name)}"%>
+          <br>
+          <%= f.submit "Gửi bình luận",class: "btn btn-default" %>
+          <%end%>
+          <%else%>
+          <textarea class= "form-control"></textarea>
+          <br>
+          <a href="<%=login_path%>" class="btn btn-default">Đăng nhập để bình luận</a>
+          <%end%>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="container">
+        <div class="row">
+          <% @binhluans.each do |t|%>
+          <div class="container">
+            <div class="col-md-4 text-left">
+              <strong class="lead"><%=t.user_id%></strong>
+              <%=" đã bình luận | #{time_ago_in_words(t.created_at.in_time_zone(7))} ago :"%>
+            </div>
+            <div class="col-md-8 text-left" style="word-wrap: break-word;">
+              <h4><%= simple_format(t.content)%></h4>
+            </div>
+          </div>
+          <br>
+          <% end %>
+        </div>
+      </div>
+
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -90,9 +215,7 @@
         </div>
       </div>
 
-      <div class="fb-comments" data-href="http://truyensongngu.herokuapp.com/truyen/<%=@truyen.id%>" data-width="100%" data-numposts="15"></div>
-
     </div>
-</div>
-  </body>
-  </html>
+  </div>
+</body>
+</html>
