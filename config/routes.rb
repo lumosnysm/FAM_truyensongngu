@@ -26,5 +26,8 @@ Rails.application.routes.draw do
   get 'edittruyen/:id/' =>'edittruyens#edit' ,as: :edittruyen
   resources :binhluan
   post '/binhluans' => 'binhluans#create'
+  get '/xoabinhluan/:id/' =>'binhluans#destroy' ,as: :xoabinhluan
   get '/search'=>'truyens#search'
+  resources :rating
+  post '/ratings' => 'ratings#create'
 end

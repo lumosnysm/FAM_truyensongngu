@@ -18,31 +18,3 @@ end
 Then /^I should be on home page$/ do
     current_path.should == root_path
 end
-
-
-Then(/^I should be on "([^"]*)" page$/) do |arg|
-
-end
-
-And(/^I should see "([^"]*)" page$/) do |arg|
-
-end
-
-Then(/^I should see "([^"]*)" option$/) do |arg|
-end
-
-When(/^I click "([^"]*)" button$/) do |arg|
-
-end
-
-When(/^I fill in search box with "([^"]*)"$/) do |arg|
-
-end
-
-Then(/^I should be on search page$/) do
-
-end
-
-And(/^I should see "([^"]*)" story's infomation$/) do |arg|
-  
-end

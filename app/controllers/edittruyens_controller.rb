@@ -31,6 +31,6 @@ class EdittruyensController < ApplicationController
   end
   private
   def truyen_params
-    params.require(:truyen).permit(:name_vn, :name_en, :content_vn, :content_en, :image, :theloai_id)
+    params.require(:truyen).permit(:name_vn, :name_en, :content_vn, :content_en, :image, :theloai_id,:rate)
   end
 end

@@ -10,14 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170329115643) do
+ActiveRecord::Schema.define(version: 20170501070548) do
 
   create_table "binhluans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
     t.string   "content"
     t.integer  "truyen_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "user_id",    limit: 65535, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.index ["truyen_id"], name: "index_binhluans_on_truyen_id", using: :btree
+  end
+
+  create_table "ratings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
+    t.integer  "truyen_id"
+    t.integer  "user_id"
+    t.float    "rate",       limit: 24
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["truyen_id"], name: "index_ratings_on_truyen_id", using: :btree
   end
 
   create_table "theloais", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci" do |t|
