@@ -101,6 +101,10 @@
                   <h2><a href="<%=truyen_path(t)%>" title="<%= truncate t.content_vn, length: 300 %>"><%= truncate t.name_vn, length: 30 %></a></h2>
                   <p class="lead"><%= truncate t.content_vn, length: 40 %></p>
                   <%="#{time_ago_in_words(t.updated_at.in_time_zone(7))} ago"%>
+
+                  
+                
+
                 </div>
                 <%end%>
               </div>

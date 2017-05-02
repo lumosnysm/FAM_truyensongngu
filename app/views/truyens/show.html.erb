@@ -22,6 +22,7 @@
 <body>
 
 <div class ="section">
+
     <!-- LOGO -->
     <div class="container">
       <div class="row">
@@ -69,29 +70,29 @@
 
                 <!-- NEU DANG NHAP ROI NHUNG CHUA RATE -->
 
-                <% if @rated === false%>
+                <% if @rated === false %>
                 <div class="row">
                   <%= form_for (@rating) do |f|%>
                   <%= f.hidden_field :truyen_id, :value => @truyen.id %>
                   <%= f.hidden_field :user_id, :value => current_user.try(:id)%>
                   <fieldset class="rating">
-                    <%= f.radio_button :rate, "5",id: "star5"%><label class = "full" for="star5" title="Tuyệt Vời - 5 stars"></label>
-                    <%= f.radio_button :rate ,"4.5",id: "star4half" %><label class="half" for="star4half" title="Hay Đấy - 4.5 stars"></label>
-                    <%= f.radio_button :rate ,"4",id: "star4"%><label class = "full" for="star4" title="Khá Hay - 4 stars"></label>
-                    <%= f.radio_button :rate ,"3.5",id: "star3half" %><label class="half" for="star3half" title="Hay - 3.5 stars"></label>
-                    <%= f.radio_button :rate ,"3",id: "star3" %><label class = "full" for="star3" title="Tạm Được - 3 stars"></label>
-                    <%= f.radio_button :rate,"2.5" ,id: "star2half" %><label class="half" for="star2half" title="Có Vẻ Hơi Dở- 2.5 stars"></label>
-                    <%= f.radio_button :rate,"2" ,id: "star2" %><label class = "full" for="star2" title="Dở - 2 stars"></label>
-                    <%= f.radio_button :rate ,"1.5",id: "star1half" %><label class="half" for="star1half" title="Quá Dở - 1.5 stars"></label>
-                    <%= f.radio_button :rate ,"1",id: "star1" %><label class = "full" for="star1" title="Tồi Tệ - 1 star"></label>
-                    <%= f.radio_button :rate ,"0.5",id: "starhalf"%><label class="half" for="starhalf" title="Như CC - 0.5 stars"></label>
+                    <%= f.radio_button :rate, "5",id: "star5" ,:onclick => "this.form.submit();"%><label class = "full" for="star5" title="Tuyệt Vời - 5 stars"></label>
+                    <%= f.radio_button :rate ,"4.5",id: "star4half",:onclick => "this.form.submit();"%><label class="half" for="star4half" title="Hay Đấy - 4.5 stars"></label>
+                    <%= f.radio_button :rate ,"4",id: "star4",:onclick => "this.form.submit();"%><label class = "full" for="star4" title="Khá Hay - 4 stars"></label>
+                    <%= f.radio_button :rate ,"3.5",id: "star3half" ,:onclick => "this.form.submit();"%><label class="half" for="star3half" title="Hay - 3.5 stars"></label>
+                    <%= f.radio_button :rate ,"3",id: "star3" ,:onclick => "this.form.submit();"%><label class = "full" for="star3" title="Tạm Được - 3 stars"></label>
+                    <%= f.radio_button :rate,"2.5" ,id: "star2half" ,:onclick => "this.form.submit();"%><label class="half" for="star2half" title="Có Vẻ Hơi Dở- 2.5 stars"></label>
+                    <%= f.radio_button :rate,"2" ,id: "star2" ,:onclick => "this.form.submit();"%><label class = "full" for="star2" title="Dở - 2 stars"></label>
+                    <%= f.radio_button :rate ,"1.5",id: "star1half",:onclick => "this.form.submit();" %><label class="half" for="star1half" title="Quá Dở - 1.5 stars"></label>
+                    <%= f.radio_button :rate ,"1",id: "star1" ,:onclick => "this.form.submit();"%><label class = "full" for="star1" title="Tồi Tệ - 1 star"></label>
+                    <%= f.radio_button :rate ,"0.5",id: "starhalf",:onclick => "this.form.submit();"%><label class="half" for="starhalf" title="Như CC - 0.5 stars"></label>
                   </fieldset>
-                  <%= f.submit "Đánh Giá",class: "btn btn-default" %>
+                  
                   <%end%>
                 </div>
                 <br>
                 <div class="row">
-                  <% if @rating_num != 0%>
+                  <% if @rating_num != 0 %>
                   <h3><%=" #{@average_rate} / 5 trong tổng số #{@rating_num} lượt đánh giá"%></h3>
 
                    <!--HIEN THI SAO TUONG UNG VOI DIEM -->
@@ -134,7 +135,7 @@
                 </div>
                 <br>
                 <div class="row">
-                  <% if @rating_num != 0%>
+                  <% if @rating_num != 0 %>
                   <h3><%=" #{@average_rate} / 5 trong tổng số #{@rating_num} lượt đánh giá"%></h3>
 
                    <!--HIEN THI SAO TUONG UNG VOI DIEM -->
@@ -171,21 +172,21 @@
                     <%= f.radio_button :rate ,"3.5",id: "star3half" %><label class="half" for="star3half" title="Hay - 3.5 stars"></label>
                     <%= f.radio_button :rate ,"3",id: "star3" %><label class = "full" for="star3" title="Tạm Được - 3 stars"></label>
                     <%= f.radio_button :rate,"2.5" ,id: "star2half" %><label class="half" for="star2half" title="Có Vẻ Hơi Dở- 2.5 stars"></label>
-                    <%= f.radio_button :rate,"2" ,id: "star2" %><label class = "full" for="star2" title="Dở - 2 stars"></label>
+                    <%= f.radio_button :rate,"2" ,id: "star2"%><label class = "full" for="star2" title="Dở - 2 stars"></label>
                     <%= f.radio_button :rate ,"1.5",id: "star1half" %><label class="half" for="star1half" title="Quá Dở - 1.5 stars"></label>
                     <%= f.radio_button :rate ,"1",id: "star1" %><label class = "full" for="star1" title="Tồi Tệ - 1 star"></label>
                     <%= f.radio_button :rate ,"0.5",id: "starhalf"%><label class="half" for="starhalf" title="Như CC - 0.5 stars"></label>
                   </fieldset>
                   <%end%>
-                  <a href="<%login_path%>" class= "btn btn-default">Đăng nhập để đánh giá</a>
+                  <a href="<%=login_path%>" class= "btn btn-default">Đăng nhập để đánh giá</a>
                 </div>
                 <br>
                 <div class="row">
-                  <% if @rating_num != 0%>
+                  <% if @rating_num != 0 %>
                   <h3><%=" #{@average_rate} / 5 trong tổng số #{@rating_num} lượt đánh giá"%></h3>
 
                   <!--HIEN THI SAO TUONG UNG VOI DIEM -->
-                  
+                
                   <%if @Is_average_rate_int %>
                   <% for i in 1..@count do %>
                   <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>

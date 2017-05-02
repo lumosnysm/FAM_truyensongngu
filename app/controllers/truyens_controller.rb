@@ -6,6 +6,7 @@ class TruyensController < ApplicationController
     @binhluan = Binhluan.new
     @binhluan_num=@truyen.binhluans.count
     @rating=Rating.new
+
     @rated=false
     if @truyen.ratings.exists?(:user_id => current_user.try(:id))
       @rated=true
@@ -14,23 +15,27 @@ class TruyensController < ApplicationController
       @count1=@user_rate.to_i
       if @Is_user_rate_int
         @count1=@user_rate
-      end
+       end
     end
 
     @rating_num=@truyen.ratings.count
     @average_rate=@truyen.ratings.average(:rate)
 
+    if @rating_num != 0 and @average_rate != nil
     @Is_average_rate_int=(@average_rate -@average_rate.to_i)>0?false : true
     @count=@average_rate.to_i
-    if @Is_average_rate_int
+      if @Is_average_rate_int
       @count=@average_rate
+      end
     end
 
   end
+
   def all
     @theloais=Theloai.all
     @truyens=Truyen.order("name_vn ASC")
   end
+
   def search
     @truyens = Truyen.search(params[:search])
     @theloais=Theloai.all

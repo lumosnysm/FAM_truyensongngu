@@ -59,7 +59,47 @@
                 <h1><a href="<%=truyen_path(t)%>" title="<%= truncate t.content_vn, length: 400 %>"><%= t.name_en %></a></h1>
                 <p><%= truncate t.content_en, length: 200 %></p>
               </div>
-              <div class="col-md-2"><p class="text-right"><p>Cập Nhật</p><%="#{time_ago_in_words(t.updated_at.in_time_zone(7))} ago"%></p></div>
+              <div class="col-md-2">
+              <p class="text-right">
+                <p>Cập Nhật</p>
+                <%="#{time_ago_in_words(t.updated_at.in_time_zone(7))} ago"%>
+                <br>
+
+                <!-- CODE LAY DU LIEU RATE TUNG TRUYEN ( CODE NAY DI KEM CODE TRONG CONTROLLER)-->
+                <% @average_rate=t.ratings.average(:rate) %>
+                <% @rating_num=t.ratings.count %>
+                <% if @rating_num != 0 and @average_rate != nil %>
+                <% @Is_average_rate_int=(@average_rate -@average_rate.to_i)>0?false : true %>
+                <% @count=@average_rate.to_i %>
+                <% if @Is_average_rate_int %>
+                <% @count=@average_rate %>
+                <% end %>
+                <% end %>
+
+                <div class="row">
+                <br>
+                  <% if @rating_num != 0 %>
+
+                   <!--HIEN THI SAO TUONG UNG VOI DIEM -->
+
+                  <%if @Is_average_rate_int %>
+                  <% for i in 1..@count do %>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
+                  <%end%>
+                  <%=" (#{@average_rate} / 5)"%>
+                  <%else%>
+                  <% for i in 1..@count do %>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
+                  <%end%>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-half.png"/>
+                  <%=" (#{@average_rate} / 5)"%>
+                  <%end%>
+                  <%else%>
+                  <p>Chưa có lượt đánh giá nào</p>
+                  <%end%>
+                </div>
+                </p>
+                </div>
             </div>
           </div>
         </div>
