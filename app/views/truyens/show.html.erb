@@ -92,8 +92,21 @@
                 <br>
                 <div class="row">
                   <% if @rating_num != 0%>
-                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/mid-star.png"/>
                   <h3><%=" #{@average_rate} / 5 trong tổng số #{@rating_num} lượt đánh giá"%></h3>
+
+                   <!--HIEN THI SAO TUONG UNG VOI DIEM -->
+
+                  <%if @Is_average_rate_int %>
+                  <% for i in 1..@count do %>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
+                  <%end%>
+                  <%else%>
+                  <% for i in 1..@count do %>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
+                  <%end%>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-half.png"/>
+                  <%end%>
+
                   <%else%>
                   <h3>Chưa có lượt đánh giá nào</h3>
                   <%end%>
@@ -104,12 +117,39 @@
 
                 <div class="row">
                   <h1><%="bạn đã đánh giá  #{@user_rate}"%></h1>
+
+                   <!--HIEN THI SAO TUONG UNG VOI DIEM -->
+
+                  <%if @Is_user_rate_int %>
+                  <% for i in 1..@count1 do %>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
+                  <%end%>
+                  <%else%>
+                  <% for i in 1..@count1 do %>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
+                  <%end%>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-half.png"/>
+                  <%end%>
+
                 </div>
                 <br>
                 <div class="row">
                   <% if @rating_num != 0%>
-                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/mid-star.png"/>
                   <h3><%=" #{@average_rate} / 5 trong tổng số #{@rating_num} lượt đánh giá"%></h3>
+
+                   <!--HIEN THI SAO TUONG UNG VOI DIEM -->
+
+                  <%if @Is_average_rate_int %>
+                  <% for i in 1..@count do %>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
+                  <%end%>
+                  <%else%>
+                  <% for i in 1..@count do %>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
+                  <%end%>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-half.png"/>
+                  <%end%>
+
                   <%else%>
                   <h3>Chưa có lượt đánh giá nào</h3>
                   <%end%>
@@ -142,8 +182,21 @@
                 <br>
                 <div class="row">
                   <% if @rating_num != 0%>
-                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/mid-star.png"/>
                   <h3><%=" #{@average_rate} / 5 trong tổng số #{@rating_num} lượt đánh giá"%></h3>
+
+                  <!--HIEN THI SAO TUONG UNG VOI DIEM -->
+                  
+                  <%if @Is_average_rate_int %>
+                  <% for i in 1..@count do %>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
+                  <%end%>
+                  <%else%>
+                  <% for i in 1..@count do %>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
+                  <%end%>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-half.png"/>
+                  <%end%>
+
                   <%else%>
                   <h3>Chưa có lượt đánh giá nào</h3>
                   <%end%>
@@ -228,5 +281,6 @@
 
     </div>
   </div>
+
 </body>
 </html>
