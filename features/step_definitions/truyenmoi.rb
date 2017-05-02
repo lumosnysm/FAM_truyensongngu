@@ -1,3 +1,4 @@
+=begin
 Given /^I am on home page$/ do
   visit root_path
 end
@@ -8,3 +9,4 @@ end
 When(/^I click "([^"]*)"$/) do |arg1|
 click_on(arg1, match: :first)
 end
+=end
