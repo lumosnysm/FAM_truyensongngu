@@ -38,32 +38,32 @@
             <div class="col-md-12">
               <hr>
             </div>
-            <center><h1 class="lead"><%=@theloai.title%></h1><center>
+            <p class="lead"><%=@theloai.title%></p>
           </div>
         </div>
       </div>
 
       <% @truyens.each do |t|%>
-	<div class="section">
+      <div class="section">
         <div class="container">
           <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
               <a href="<%=truyen_path(t)%>" title="<%= truncate t.content_vn, length: 400 %>"><img src="<%=t.image%>"
                 class="img-responsive"></a>
               </div>
-              <div class="col-md-4">
-                <h2><a href="<%=truyen_path(t)%>" title="<%= truncate t.content_vn, length: 400 %>"><%= t.name_vn %></a></h2>
-                <p><%= truncate t.content_vn, length: 150 %></p>
+              <div class="col-md-3">
+                <h1><a href="<%=truyen_path(t)%>" title="<%= truncate t.content_vn, length: 400 %>"><%= t.name_vn %></a></h1>
+                <p><%= truncate t.content_vn, length: 200 %></p>
               </div>
               <div class="col-md-3">
-                <h2><a href="<%=truyen_path(t)%>" title="<%= truncate t.content_vn, length: 400 %>"><%= t.name_en %></a></h2>
-                <p><%= truncate t.content_en, length: 150 %></p>
+                <h1><a href="<%=truyen_path(t)%>" title="<%= truncate t.content_vn, length: 400 %>"><%= t.name_en %></a></h1>
+                <p><%= truncate t.content_en, length: 200 %></p>
               </div>
-              <div class="col-md-2"><p class="text-right"><p><br>Cập Nhật</p><%="#{time_ago_in_words(t.updated_at.in_time_zone(7))} ago"%></p></div>
+              <div class="col-md-2"><p class="text-right"><p>Cập Nhật</p><%="#{time_ago_in_words(t.updated_at.in_time_zone(7))} ago"%></p></div>
             </div>
           </div>
         </div>
-            <%end%>
+        <%end%>
 
         <div class="container">
           <div class="row">

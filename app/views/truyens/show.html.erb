@@ -64,7 +64,7 @@
                 <p class="text-left ">Thời điểm cập nhật :</p>
                 <p class="text-left ">Thể Loại :</p>
                 <p class="text-left ">Tên Tiếng Việt :</p>
-                <p class="text-left ">Tên Tiếng Anh :</p
+                <p class="text-left ">Tên Tiếng Anh :</p>
               </div>
               <div class="col-md-3">
                 <p class="text-right "><%="#{time_ago_in_words(@truyen.updated_at.in_time_zone(7))} ago"%></p>
@@ -74,7 +74,11 @@
               </div>
               <div class="col-md-6 text-center">
                 <!-- RATING -->
+                <!-- NEU DA DANG NHAP -->
+
                 <%if current_user %>
+
+                <!-- NEU DANG NHAP ROI NHUNG CHUA RATE -->
 
                 <% if @rated === false%>
                 <div class="row">
@@ -98,9 +102,15 @@
                 </div>
                 <br>
                 <div class="row">
+                  <% if @rating_num != 0%>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/mid-star.png"/>
                   <h3><%=" #{@average_rate} / 5 trong tổng số #{@rating_num} lượt đánh giá"%></h3>
+                  <%else%>
+                  <h3>Chưa có lượt đánh giá nào</h3>
+                  <%end%>
                 </div>
 
+                <!-- DANG NHAP VA DA RATE -->
                 <%else%>
 
                 <div class="row">
@@ -118,6 +128,8 @@
                 <%end%>
 
                 <%else%>
+
+                <!-- CHUA DANG NHAP -->
 
                 <div class="row">
                   <%= form_for (@rating) do |f|%>
@@ -160,16 +172,16 @@
 
       <div class="container">
         <div class="row">
-          <div class="col-md-6"><h1 class="text-center"><%=@truyen.name_vn%></h1></div>
-	  <div class="col-md-6"><h1 class="text-center"><%=@truyen.name_en%></h1></div>
+          <div class="col-md-12"><h1 class="text-center"><%=@truyen.name_vn%> <%= @truyen.name_en%></h1></div>
         </div>
         <br>
         <div class="row">
-          <div class="col-md-6" align = "justify"><div class="section"><b class="lead"><%= simple_format(@truyen.content_vn)%></b></div></div>
-          <div class="col-md-6" align = "justify"><div class="section"><b class="lead"><%= simple_format(@truyen.content_en)%></b></div></div>
+          <div class="col-md-6"><div class="section"><b class="lead"><%= simple_format(@truyen.content_vn)%></b></div></div>
+          <div class="col-md-6"><div class="section"><b class="lead"><%= simple_format(@truyen.content_en)%></b></div></div>
         </div>
       </div>
-    
+
+
       <div class="container">
         <div class="row">
           <div class="col-md-12">
@@ -178,7 +190,6 @@
           </div>
         </div>
       </div>
-
 
       <div class="container">
         <div class="col-md-12">
@@ -225,8 +236,6 @@
           <p>FAM-Truyện Song Ngữ</p>
         </div>
       </div>
-
-  
 
     </div>
   </div>
