@@ -8,3 +8,6 @@ Feature: truyenmoi
     Then I should see "Truyện mới"
     When I click "Truyện mới"
     Then I should see "KHÔNG BAO GIỜ BỎ CUỘC"
+
+    
+
