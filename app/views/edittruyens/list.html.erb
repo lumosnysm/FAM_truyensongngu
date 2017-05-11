@@ -1,12 +1,40 @@
-<div class="section">
+<html>
 
-  <h2>chọn truyện muốn edit</h2>
-  <ol>
-    <% @truyens.each do |t| %>
-    <li>
-    	<a href="<%=edittruyen_path(t)%>" class="btn btn-default"><%= t.name_vn %></a>
-    	<%= link_to 'DELETE', xoatruyen_path(t), method: :delete ,class: "btn btn-default"%>
-    	</li>
-    <%end%>
-  </ol>
-</div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.css" type="text/css"> </head>
+
+<body class="bg-inverse">
+  <div class="py-5">
+    <div class="container">
+      <p class="lead text-white">Chọn truyện muốn edit</p>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-inverse table-striped table-bordered table-hover table-reflow">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Tên</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @truyens.each do |t| %>
+              <tr>
+                <td><a href="<%=edittruyen_path(t)%>" class="text-white"><%= t.id %></a></td>
+                <td><a href="<%=edittruyen_path(t)%>" class="text-white"><%= t.name_vn %></a></td>
+              </tr>
+              <%end%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+  <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+</body>
+
+</html>

@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   get '/xoatheloai/:id/' =>'theloais#destroy' ,as: :xoatheloai
   get '/edit' =>'edittruyens#list'
   get '/admin' =>'admin#show'
-  get '/super' =>'admin#super'
   patch '/truyen/:id' => 'edittruyens#update'
   resources :truyen
   get '/xoatruyen/:id/' =>'edittruyens#destroy' ,as: :xoatruyen
@@ -30,4 +29,7 @@ Rails.application.routes.draw do
   get '/search'=>'truyens#search'
   resources :rating
   post '/ratings' => 'ratings#create'
+  resources :finalrate
+  get '/updaterate/:id' => 'finalrates#updaterate' ,as: :updaterate
+  get '/createcolumn/:id' =>'finalrates#create',as: :createcolumn
 end

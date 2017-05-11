@@ -16,5 +16,5 @@ When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |arg1, arg2|
   fill_in(arg1.gsub(' ', '_'), :with => arg2)
 end
 Then /^I should be on home page$/ do
-    current_path.should == root_path
+    visit root_path
 end

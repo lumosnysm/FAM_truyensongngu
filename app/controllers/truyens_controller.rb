@@ -33,12 +33,13 @@ class TruyensController < ApplicationController
 
   def all
     @theloais=Theloai.all
-    @truyens=Truyen.order("name_vn ASC")
+    @truyens=Truyen.all
   end
 
   def search
     @truyens = Truyen.search(params[:search])
     @theloais=Theloai.all
   end
+
 
 end

@@ -3,10 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-  <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-  <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
-  rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.css" type="text/css">
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -17,81 +15,83 @@
   ga('send', 'pageview');
 
   </script>
-</head>
+ </head>
 
-<body>
-
-  <div class="section">
-
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <h1 class="text-left">
-            <i class="fa fa-3x fa-fw fa-book"></i>
-            <b>
-              <i class="">Truyện Song Ngữ Anh-Việt</i>
-            </b>
-          </h1>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <hr>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <% if @truyens.present? %>
-    <div class="section">
-
-      <div class="container">
-        <p class="lead">Kết quả tìm kiếm với: <%= params[:search] %>.</p>
-        <div class="row">
-          <div class="col-md-3"><b>Tên tiếng Việt</b></div>
-          <div class="col-md-3"><b>Tên tiếng Anh</b></div>
-          <div class="col-md-3"><b>Thể loại</b></div>
-          <div class="col-md-3"><b>Thời gian cập nhật</b></div>
-          <div class="row">
-            <div class="col-md-12">
-              <hr>
+  <body class="bg-inverse">
+    <!-- THANH BAR-->
+    <nav class="navbar navbar-expand-md bg-inverse navbar-inverse">
+      <div class="container"> <a class="navbar-brand" href="<%=home_path%>">Truyện Song Ngữ</a> <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active"> <a class="nav-link" href="<%=home_path%>">Trang chủ <span class="sr-only">(current)</span></a> </li>
+          <li class="nav-item"> <a class="nav-link" href="<%=new_path%>">Truyện mới</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="<%=all_path%>">Tất cả</a> </li>
+          <li class="nav-item dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle text-white" data-toggle="dropdown"> Thể loại </button>
+            <div class="dropdown-menu">
+              <% @theloais.each do |t|%>
+              <a class="dropdown-item" href="<%= theloai_path(t) %>"><%= t.title%></a>
+              <%end%>
             </div>
+          </li>
+        </ul>
+        <%= form_tag(search_path, :method => "get", id: "search-form" ,class: "form-inline my-lg-0") do %><%= text_field_tag :search, params[:search],class: "form-control mr-sm-2" , :placeholder => "Tìm Kiếm"%><button class="btn my-2 my-sm-0 btn-outline-secondary" type="submit"><i class="fa fa-fw fa-search"></i></button> <%end%>
+        <% if current_user%><a href="<%= logout_path%>" class="btn btn-default navbar-btn text-white mx-5">Đăng xuất</a>
+        <li class="dropdown"><a class="btn btn-outline-secondary dropdown-toggle text-white" href="#" data-toggle="dropdown" role="button"aria-expanded="false"><img src="https://pingendo.com/assets/photos/user_placeholder.png" width="30" height="30" class="d-inline-block align-top mx-1" alt=""></a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item text-uppercase" href="" ><%="#{current_user.first_name} #{current_user.last_name}"%></a>
           </div>
-        </div>
-
-      </div>
-
-      <div class="section">
-        <div class="container">
-          <% @truyens.each do |t|%>
-          <div class="row">
-            <div class="col-md-3"><a href="<%=truyen_path(t)%>"><%= t.name_vn%></a></div>
-            <div class="col-md-3"><a href="<%=truyen_path(t)%>"><%= t.name_en%></a></div>
-            <div class="col-md-3"><%= t.theloai.title%></div>
-            <div class="col-md-3"><%="#{time_ago_in_words(t.updated_at.in_time_zone(7))} ago"%></div>
-          </div>
-          <%end%>
-        </div>
-      </div>
-      
-    </div>
-    <% else %>
-    <div class="section">
-      <div class="container">
-        <p>There are no truyen containing the term(s) <%= params[:search] %>.</p>
+        </li>
+        <%else%><a href="<%=login_path%>" class="btn btn-default navbar-btn text-white mx-5">Đăng nhập</a><%end%>
       </div>
     </div>
-    <% end %>
-  </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <hr>
+  </nav>
+  <div class="section text-center">
+    <div class="container">
+      <div class="row"> <i class="fa fa-3x fa-fw fa-book text-white"></i>
+        <h1 class="text-white">Truyện Song Ngữ Anh-Việt</h1>
       </div>
-      <p>FAM-Truyện Song Ngữ</p>
+      <hr class="bg-faded">
     </div>
   </div>
 
-</div>
+  <% if @truyens.present? %>
+  <!--TABLE-->
+  <div class="py-5"><div class="container"><div class="row"><div class="col-md-12"><table class="table table-inverse table-striped table-bordered table-hover table-reflow">
+    <p class="lead text-white">Kết quả tìm kiếm với: <%= params[:search] %>.</p>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Tên tiếng Việt</th>
+        <th>Tên tiếng Anh</th>
+        <th>Thể loại</th>
+        <th>Thời gian</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @truyens.each do |t| %>
+      <tr>
+        <td><%= t.id %></td>
+        <td><a href="<%=truyen_path(t)%>" class="text-white"><%= t.name_vn %></a></td>
+        <td><a href="<%=truyen_path(t)%>" class="text-white"><%= t.name_en %></a></td>
+        <td><%= t.theloai.title %></td>
+        <td><%="#{time_ago_in_words(t.updated_at.in_time_zone(7))} ago"%></td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table></div></div></div></div>
+
+  <%else%>
+  <div class="py-5"><div class="container"><div class="row"><div class="col-md-12"><p class="lead text-white">Không tìm thấy truyện với tìm kiếm : <%= params[:search] %>.</p></div></div></div></div>
+  <%end%>
+
+  <div class="section text-center"><div class="container"><hr class="bg-faded"></div></div>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+  <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
 </body>
+
 </html>

@@ -17,8 +17,8 @@ end
 def destroy
     @binhluan = Binhluan.find(params[:id])
     @binhluan.destroy
-    
-    redirect_to super_path
+
+    redirect_to (:back)
   end
 private
 def binhluan_params

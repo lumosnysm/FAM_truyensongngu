@@ -1,46 +1,42 @@
-<div class="section">
+<html>
 
-<h1>Edit Truyện</h1>
-<%= form_for @truyen do |f| %>
-<div class="col-sm-8">
-  <p>
-    <%= f.label :name_vn  %><br>
-    <%= f.text_field :name_vn ,class: "form-control"%>
-  </p>
-  <p>
-    <%= f.label :name_en  %><br>
-    <%= f.text_field :name_en  ,class: "form-control"%>
-  </p>
-  <p>
-    <%= f.label :content_vn  %><br>
-    <%= f.text_area :content_vn ,class: "form-control"%>
-  </p>
-  <p>
-    <%= f.label :content_en  %><br>
-    <%= f.text_area :content_en  ,class: "form-control"%>
-  </p>
-  <p>
-    <%= f.label :image_url  %><br>
-    <%= f.text_field :image ,class: "form-control"%>
-  </p>
-  <p>
-    <%= f.label :theloai_id  %>
-    <h5>điền số ứng với thể loại</h5>
-    <ol>
-      <% @theloais.each do |t|%>
-      <li>
-        <%=t.title %>
-      </li>
-      <%end%>
-    </ol>
-    <br>
-    <%= f.text_field :theloai_id ,class: "form-control"%>
-  </p>
-  <%= f.submit "OK",class: "btn btn-default" %>
-</div>
-<% end %>
-<a href="<%=themtheloai_path%>" class="btn btn-default">cập nhật thêm thể loại</a>
-  <a href="<%=home_path%>" class="btn btn-default">về trang chủ</a>
-    <a href="<%=uptruyen_path%>" class="btn btn-default">up thêm truyện</a>
-      <a href="<%=admin_path%>" class="btn btn-default">Trang Admin</a>
-</div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.css" type="text/css"> </head>
+
+  <body class="bg-inverse">
+    <div class="py-5">
+      <div class="container"><p class="lead text-white">Edit truyện</p>
+        <div class="row">
+          <div class="col-md-12">
+            <%= form_for @truyen do |f| %>
+            <div class="form-group text-white"> <label>Tên tiếng Việt</label> <%= f.text_field :name_vn ,class: "form-control"%> </div>
+            <div class="form-group text-white"> <label>Tên tiếng Anh</label> <%= f.text_field :name_en  ,class: "form-control"%> </div>
+            <div class="form-group text-white"> <label>Nội dung tiếng Việt</label> <%= f.text_area :content_vn ,class: "form-control"%> </div>
+            <div class="form-group text-white"> <label>Nội dung tiếng Việt</label> <%= f.text_area :content_en ,class: "form-control"%> </div>
+            <div class="form-group text-white"> <label>URL hình ảnh</label> <%= f.text_field :image ,class: "form-control"%> </div>
+            <div class="form-group text-white"> <label>Thể loại</label>
+              <h5 class="text-white">điền số ứng với thể loại</h5>
+              <ol>
+                <% @theloais.each do |t|%>
+                <li>
+                  <p class="text-white"><%=t.title %></p>
+                </li>
+                <%end%>
+              </ol>
+              <br>
+              <%= f.text_field :theloai_id ,class: "form-control"%> </div>
+              <%= f.submit "OK",class: "btn btn-primary text-white" %>
+              <%end%>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+      <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+    </body>
+
+    </html>

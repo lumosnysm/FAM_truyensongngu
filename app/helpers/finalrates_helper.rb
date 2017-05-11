@@ -1,0 +1,2 @@
+module FinalratesHelper
+end

@@ -1,122 +1,44 @@
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-  <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-  <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
-  rel="stylesheet" type="text/css">
-  <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-97841360-1', 'auto');
-  ga('send', 'pageview');
-
-  </script>
-
-</head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.css" type="text/css"> </head>
 
 <body>
-<div class="section">
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <h1 class="text-left">
-          <i class="fa fa-3x fa-fw fa-book"></i>
-          <b>
-            <i class="">Truyện Song Ngữ Anh-Việt</i>
-          </b>
-        </h1>
+  <div class="bg-inverse">
+    <div class="container">
+      <div class="row text-white">
+        <div class="mx-auto py-5 col-md-7"> <i class="fa fa-book pull-left mx-auto px-5 fa-3x"></i>
+          <h1 class="text-uppercase">Truyện Song Ngữ</h1>
+        </div>
+        <div class="col-md-12">
+          <hr class=""> </div>
+      </div>
+      <div class="row mx-auto px-5">
+        <div class="col-md-5 mx-auto bg-faded p-3">
+          <hr class="">
+          <%= form_for(@user) do |f| %>
+            <div class="form-group"> <label class="">Email address</label> <%= f.email_field :email, :placeholder => "EMAIL" ,class: "form-control"%> </div>
+            <div class="form-group"> <label class="">Password</label> <%= f.password_field :password, :placeholder => "PASSWORD" ,class: "form-control"%> </div>
+            <div class="form-group"><label>Tên</label><%= f.text_field :first_name, :placeholder => "FIRST NAME" ,class: "form-control"%></div>
+            <div class="form-group"><label>Họ</label><%= f.text_field :last_name, :placeholder => "LAST NAME" ,class: "form-control"%></div><%= f.submit "Đăng Ký", class: "btn btn-success btn-block" %><% end %>
+          <hr class="">
+          <p class="text-center">Đă có tài khoản ? <a href="<%= login_path %>" class="text-success">Đăng Nhập</a></p>
+        </div>
       </div>
       <div class="row">
-        <div class="col-md-12">
-          <hr>
+        <div class="col-md-5 mx-auto">
+          <hr class="">
+          <p class="text-center text-gray-dark">FAM-Truyện Song Ngữ</p>
         </div>
       </div>
     </div>
   </div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h1 class="text-center">Truyện Song Ngữ</h1>
-        <h2 class="text-center">Đăng Ký</h2>
-      </div>
-    </div>
-  </div>
-
-<div class="container">
-  <div class="col-md-12">
-    <%= form_for(@user) do |f| %>
-    <div class="form-group">
-      <div class="form-group">
-        <div class="container">
-          <div class="col-sm-4 text-right">
-            <label class="control-label">TÊN</label>
-          </div>
-          <div class="col-sm-4">
-            <%= f.text_field :first_name, :placeholder => "TÊN" ,class: "form-control"%>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="form-group">
-        <div class="container">
-          <div class="col-sm-4 text-right">
-            <label class="control-label">HỌ</label>
-          </div>
-          <div class="col-sm-4">
-            <%= f.text_field :last_name, :placeholder => "HỌ" ,class: "form-control"%>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="form-group">
-        <div class="container">
-          <div class="col-sm-4 text-right">
-            <label class="control-label">EMAIL</label>
-          </div>
-          <div class="col-sm-4">
-            <%= f.email_field :email, :placeholder => "EMAIL" ,class: "form-control"%>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="form-group">
-        <div class="container">
-          <div class="col-sm-4 text-right">
-            <label class="control-label">MẬT KHẨU</label>
-          </div>
-          <div class="col-sm-4">
-            <%= f.password_field :password, :placeholder => "PASSWORD" ,class: "form-control"%>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="text-center">
-    <%= f.submit "TẠO TÀI KHOẢN", class: "btn btn-default text-center" %>
-  </div>
-    <%end%>
-  </div>
-</div>
-
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <hr>
-      </div>
-      <p>FAM-Truyện Song Ngữ</p>
-    </div>
-  </div>
-
-</div>
-
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+  <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
 </body>
+
 </html>

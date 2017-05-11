@@ -1,23 +1,37 @@
-<div class="section">
-<h1>Thêm thể loại</h1>
-<h3>các thể loại hiện có</h3>
-<ol>
-  <% @theloais.each do |t|%>
-  <li>
-    <%=t.title %>
-    <%= link_to 'DELETE', xoatheloai_path(t), method: :delete ,class: "btn btn-default"%>
-  </li>
-  <%end%>
-</ol>
-<%= form_for(@theloai) do |f| %>
-<div class="col-sm-8">
-  <p>
-    <%= f.label :title  %><br>
-    <%= f.text_field :title ,class: "form-control"%>
-  </p>
-  <%= f.submit "Thêm",class: "btn btn-default" %>
-</div>
-<%end%>
-<a href="<%=uptruyen_path%>" class="btn btn-default">up thêm truyện</a>
-  <a href="<%=home_path%>" class="btn btn-default">về trang chủ</a>
-  </div>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.css" type="text/css"> </head>
+
+  <body class="bg-inverse">
+    <div class="py-5">
+      <div class="container"><p class="lead text-white">Thêm thể loại</p>
+        <div class="row">
+          <div class="col-md-12">
+            <%= form_for @theloai do |f| %>
+              <h5 class="text-white">Các thể loại hiện có:</h5>
+              <ol>
+                <% @theloais.each do |t|%>
+                <li>
+                  <p class="text-white"><%=t.title %></p>
+                </li>
+                <%end%>
+              </ol>
+              <br>
+              <p class="text-white"> Nhập tên thể loại muốn thêm</p>
+              <%= f.text_field :title ,class: "form-control"%> </div>
+              <%= f.submit "OK",class: "btn btn-primary text-white" %>
+              <%end%>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+      <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+    </body>
+
+    </html>

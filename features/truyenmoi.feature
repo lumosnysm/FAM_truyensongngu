@@ -5,6 +5,6 @@ Feature: truyenmoi
 
   Scenario: Truyen Moi
     Given I am on home page
-    Then I should see "Truyện Mới Cập Nhật"
-    When I click "Truyện Mới Cập Nhật"
+    Then I should see "Truyện mới"
+    When I click "Truyện mới"
     Then I should see "KHÔNG BAO GIỜ BỎ CUỘC"

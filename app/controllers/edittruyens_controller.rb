@@ -14,7 +14,7 @@ class EdittruyensController < ApplicationController
   def create
     @truyen = Truyen.new(truyen_params)
     if @truyen.save
-      redirect_to edit_path
+      redirect_to createcolumn_path(@truyen.id)
     end
   end
   def update

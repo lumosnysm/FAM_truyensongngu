@@ -1,77 +1,108 @@
-
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-  <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-  <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"
-  rel="stylesheet" type="text/css">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.css" type="text/css">
   <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
   ga('create', 'UA-97841360-1', 'auto');
   ga('send', 'pageview');
+
   </script>
-</head>
+ </head>
 
-<body>
+  <body class="bg-inverse">
 
-<div class ="section">
-
-    <!-- LOGO -->
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <h1 class="text-left">
-            <i class="fa fa-3x fa-fw fa-book"></i>
-            <b>
-              <i class="">Truyện Song Ngữ Anh-Việt</i>
-            </b>
-          </h1>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <hr>
+    <!-- THANH BAR-->
+    <nav class="navbar navbar-expand-md bg-inverse navbar-inverse">
+      <div class="container"> <a class="navbar-brand" href="<%=home_path%>">Truyện Song Ngữ</a> <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active"> <a class="nav-link" href="<%=home_path%>">Trang chủ <span class="sr-only">(current)</span></a> </li>
+          <li class="nav-item"> <a class="nav-link" href="<%=new_path%>">Truyện mới</a> </li>
+          <li class="nav-item"> <a class="nav-link" href="<%=all_path%>">Tất cả</a> </li>
+          <li class="nav-item dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle text-white" data-toggle="dropdown"> Thể loại </button>
+            <div class="dropdown-menu">
+              <% @theloais.each do |t|%>
+              <a class="dropdown-item" href="<%= theloai_path(t) %>"><%= t.title%></a>
+              <%end%>
+            </div>
+          </li>
+        </ul>
+        <%= form_tag(search_path, :method => "get", id: "search-form" ,class: "form-inline my-lg-0") do %><%= text_field_tag :search, params[:search],class: "form-control mr-sm-2" , :placeholder => "Tìm Kiếm"%><button class="btn my-2 my-sm-0 btn-outline-secondary" type="submit"><i class="fa fa-fw fa-search"></i></button> <%end%>
+        <% if current_user%><a href="<%= logout_path%>" class="btn btn-default navbar-btn text-white mx-5">Đăng xuất</a>
+        <li class="dropdown"><a class="btn btn-outline-secondary dropdown-toggle text-white" href="#" data-toggle="dropdown" role="button"aria-expanded="false"><img src="https://pingendo.com/assets/photos/user_placeholder.png" width="30" height="30" class="d-inline-block align-top mx-1" alt=""></a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item text-uppercase" href="" ><%="#{current_user.first_name} #{current_user.last_name}"%></a>
           </div>
-        </div>
+        </li>
+        <%else%><a href="<%=login_path%>" class="btn btn-default navbar-btn text-white mx-5">Đăng nhập</a><%end%>
       </div>
     </div>
-    <!-- BANG THONG KE -->
+  </nav>
+  <div class="section text-center">
+    <div class="container">
+      <div class="row"> <i class="fa fa-3x fa-fw fa-book text-white"></i>
+        <h1 class="text-white">Truyện Song Ngữ Anh-Việt</h1>
+      </div>
+      <hr class="bg-faded">
+    </div>
+  </div>
+
+  <!-- TABLE-->
+  <div class="py-5">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <div class="panel panel-success">
-            <div class="panel-heading">
-              <h1 class="panel-title text-danger" style="color: black"><%=@truyen.name_vn%> <%= @truyen.name_en%></h1>
-            </div>
-            <div class="panel-body">
-              <div class="col-md-3">
-                <p class="text-left ">Thời điểm cập nhật :</p>
-                <p class="text-left ">Thể Loại :</p>
-                <p class="text-left ">Tên Tiếng Việt :</p>
-                <p class="text-left ">Tên Tiếng Anh :</p>
-              </div>
-              <div class="col-md-3">
-                <p class="text-right "><%="#{time_ago_in_words(@truyen.updated_at.in_time_zone(7))} ago"%></p>
-                <p class="text-right "><%=@truyen.theloai.title%></p>
-                <p class="text-right "><%=@truyen.name_vn%></p>
-                <p class="text-right "><%=@truyen.name_en%></p>
-              </div>
-              <div class="col-md-6 text-center">
-                <!-- RATING -->
-                <!-- NEU DA DANG NHAP -->
+          <table class="table text-white table-bordered table-hover table-reflow ">
+            <tbody>
+              <tr>
+                <td>Tên tiếng Việt:</td>
+                <td><%=@truyen.name_vn%></td>
+              </tr>
+              <tr>
+                <td>Tên tiếng Anh:</td>
+                <td><%=@truyen.name_en%></td>
+              </tr>
+              <tr>
+                <td>Thời gian cập nhật:</td>
+                <td><%="#{time_ago_in_words(@truyen.updated_at.in_time_zone(7))} ago"%></td>
+              </tr>
+              <tr>
+                <td>Đánh giá:</td>
+                <td>
+                  <!--HIEN THI SAO TUONG UNG VOI DIEM -->
+                  <% if @truyen.finalrate.number != 0 %>
+                  <%if @Is_average_rate_int %>
+                  <% for i in 1..@count do %>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
+                  <%end%>
+                  <p class="text-white"><%=" #{@truyen.finalrate.rate} / 5 trong tổng số #{@truyen.finalrate.number} lượt đánh giá"%></p>
+                  <%else%>
+                  <% for i in 1..@count do %>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
+                  <%end%>
+                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-half.png"/>
+                  <p class="text-white"><%=" #{@truyen.finalrate.rate} / 5 trong tổng số #{@truyen.finalrate.number} lượt đánh giá"%></p>
+                  <%end%>
+                  <%else%>
+                  <p class="text-white">Chưa có lượt đánh giá nào</p>
+                  <%end%>
 
-                <%if current_user %>
+                  <!-- NGUOI DUNG DANH GIA-->
+                  <%if current_user %>
+                  <!-- NEU DANG NHAP ROI NHUNG CHUA RATE -->
 
-                <!-- NEU DANG NHAP ROI NHUNG CHUA RATE -->
-
-                <% if @rated === false %>
-                <div class="row">
+                  <% if @rated === false %>
                   <%= form_for (@rating) do |f|%>
                   <%= f.hidden_field :truyen_id, :value => @truyen.id %>
                   <%= f.hidden_field :user_id, :value => current_user.try(:id)%>
@@ -87,201 +118,85 @@
                     <%= f.radio_button :rate ,"1",id: "star1" ,:onclick => "this.form.submit();"%><label class = "full" for="star1" title="Tồi Tệ - 1 star"></label>
                     <%= f.radio_button :rate ,"0.5",id: "starhalf",:onclick => "this.form.submit();"%><label class="half" for="starhalf" title="Như CC - 0.5 stars"></label>
                   </fieldset>
-                  
                   <%end%>
-                </div>
-                <br>
-                <div class="row">
-                  <% if @rating_num != 0 %>
-                  <h3><%=" #{@average_rate} / 5 trong tổng số #{@rating_num} lượt đánh giá"%></h3>
 
-                   <!--HIEN THI SAO TUONG UNG VOI DIEM -->
-
-                  <%if @Is_average_rate_int %>
-                  <% for i in 1..@count do %>
-                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
-                  <%end%>
+                  <!-- DANG NHAP VA DA RATE -->
                   <%else%>
-                  <% for i in 1..@count do %>
-                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
-                  <%end%>
-                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-half.png"/>
+                  <p><%="bạn đã đánh giá  #{@user_rate}"%></p>
                   <%end%>
 
                   <%else%>
-                  <h3>Chưa có lượt đánh giá nào</h3>
+                  <!-- CHUA DANG NHAP -->
+                  <a href="<%=login_path%>" class= "btn my-2 my-sm-0 btn-outline-secondary">Đăng nhập để đánh giá</a>
                   <%end%>
-                </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
-                <!-- DANG NHAP VA DA RATE -->
-                <%else%>
+    <!-- TITLE-->
+    <div class="py-5"><div class="container"><div class="row"><div class="col-md-12"><h3 class="text-white text-center text-uppercase"><%= @truyen.name_vn%></h3><br>"><h3 class="text-white text-center text-uppercase"><%= @truyen.name_en%></h3></div></div></div></div>
 
-                <div class="row">
-                  <h1><%="bạn đã đánh giá  #{@user_rate}"%></h1>
-
-                   <!--HIEN THI SAO TUONG UNG VOI DIEM -->
-
-                  <%if @Is_user_rate_int %>
-                  <% for i in 1..@count1 do %>
-                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
-                  <%end%>
-                  <%else%>
-                  <% for i in 1..@count1 do %>
-                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
-                  <%end%>
-                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-half.png"/>
-                  <%end%>
-
-                </div>
-                <br>
-                <div class="row">
-                  <% if @rating_num != 0 %>
-                  <h3><%=" #{@average_rate} / 5 trong tổng số #{@rating_num} lượt đánh giá"%></h3>
-
-                   <!--HIEN THI SAO TUONG UNG VOI DIEM -->
-
-                  <%if @Is_average_rate_int %>
-                  <% for i in 1..@count do %>
-                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
-                  <%end%>
-                  <%else%>
-                  <% for i in 1..@count do %>
-                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
-                  <%end%>
-                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-half.png"/>
-                  <%end%>
-
-                  <%else%>
-                  <h3>Chưa có lượt đánh giá nào</h3>
-                  <%end%>
-                </div>
-                <%end%>
-
-                <%else%>
-
-                <!-- CHUA DANG NHAP -->
-
-                <div class="row">
-                  <%= form_for (@rating) do |f|%>
-                  <%= f.hidden_field :truyen_id, :value => @truyen.id %>
-                  <%= f.hidden_field :user_id, :value => current_user.try(:id)%>
-                  <fieldset class="rating">
-                    <%= f.radio_button :rate, "5",id: "star5"%><label class = "full" for="star5" title="Tuyệt Vời - 5 stars"></label>
-                    <%= f.radio_button :rate ,"4.5",id: "star4half" %><label class="half" for="star4half" title="Hay Đấy - 4.5 stars"></label>
-                    <%= f.radio_button :rate ,"4",id: "star4"%><label class = "full" for="star4" title="Khá Hay - 4 stars"></label>
-                    <%= f.radio_button :rate ,"3.5",id: "star3half" %><label class="half" for="star3half" title="Hay - 3.5 stars"></label>
-                    <%= f.radio_button :rate ,"3",id: "star3" %><label class = "full" for="star3" title="Tạm Được - 3 stars"></label>
-                    <%= f.radio_button :rate,"2.5" ,id: "star2half" %><label class="half" for="star2half" title="Có Vẻ Hơi Dở- 2.5 stars"></label>
-                    <%= f.radio_button :rate,"2" ,id: "star2"%><label class = "full" for="star2" title="Dở - 2 stars"></label>
-                    <%= f.radio_button :rate ,"1.5",id: "star1half" %><label class="half" for="star1half" title="Quá Dở - 1.5 stars"></label>
-                    <%= f.radio_button :rate ,"1",id: "star1" %><label class = "full" for="star1" title="Tồi Tệ - 1 star"></label>
-                    <%= f.radio_button :rate ,"0.5",id: "starhalf"%><label class="half" for="starhalf" title="Như CC - 0.5 stars"></label>
-                  </fieldset>
-                  <%end%>
-                  <a href="<%=login_path%>" class= "btn btn-default">Đăng nhập để đánh giá</a>
-                </div>
-                <br>
-                <div class="row">
-                  <% if @rating_num != 0 %>
-                  <h3><%=" #{@average_rate} / 5 trong tổng số #{@rating_num} lượt đánh giá"%></h3>
-
-                  <!--HIEN THI SAO TUONG UNG VOI DIEM -->
-                
-                  <%if @Is_average_rate_int %>
-                  <% for i in 1..@count do %>
-                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
-                  <%end%>
-                  <%else%>
-                  <% for i in 1..@count do %>
-                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-on.png"/>
-                  <%end%>
-                  <img src="https://raw.githubusercontent.com/wazery/ratyrate/master/lib/generators/ratyrate/templates/star-half.png"/>
-                  <%end%>
-
-                  <%else%>
-                  <h3>Chưa có lượt đánh giá nào</h3>
-                  <%end%>
-                </div>
-
-                <%end%>
-              </div>
-            </div>
+    <!-- CONTENT-->
+    <div class="py-5 section text-white">
+      <div class="container">
+        <div class="row bg-faded text-gray-dark">
+          <div class="col-md-6" align = "justify">
+            <p class="text-justify my-1 lead"><%=simple_format(@truyen.content_vn)%></p>
+          </div>
+          <div class="col-md-6" align = "justify">
+            <p class="text-justify my-1 lead"><%=simple_format(@truyen.content_en)%></p>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="section">
+    <div class="section text-center"><div class="container"><hr class="bg-faded"></div></div>
 
-      <div class="container">
+    <!--BINH LUAN-->
+    <div class="py-5">
+      <div class="container bg-faded">
         <div class="row">
-          <div class="col-md-12"><h1 class="text-center"><%=@truyen.name_vn%> <%= @truyen.name_en%></h1></div>
+          <div class="col-md-12">
+            <strong class=""><%="#{@binhluan_num} bình luận"%></strong>
+            <% if current_user %>
+            <%= form_for (@binhluan) do |f| %>
+            <%= f.text_area :content ,class: "form-control"%>
+            <%= f.hidden_field :truyen_id, :value => @truyen.id %>
+            <%= f.hidden_field :user_id, :value => "#{current_user.try(:first_name)} #{current_user.try(:last_name)}"%>
+            <br>
+            <%= f.submit "Gửi bình luận",class: "btn btn-outline-danger" %>
+            <%end%>
+            <%else%>
+            <textarea class= "form-control"></textarea>
+            <br>
+            <a href="<%=login_path%>" class="btn btn-outline-danger">Đăng nhập để bình luận</a>
+
+	
+            <%end%>
+          </div>
         </div>
         <br>
-        <div class="row">
-          <div class="col-md-6"><div class="section"><b class="lead"><%= simple_format(@truyen.content_vn)%></b></div></div>
-          <div class="col-md-6"><div class="section"><b class="lead"><%= simple_format(@truyen.content_en)%></b></div></div>
-        </div>
-      </div>
-
-
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <hr>
-            <p class="lead"><%="#{@binhluan_num} bình luận"%></p>
+        <% @binhluans.each do |t|%>
+        <div class="row bg-faded">
+          <div class="col-md-1"><img src="https://pingendo.com/assets/photos/user_placeholder.png" class="center-block rounded-circle img-fluid my-3"></div>
+          <div class="col-md-11 my-4" style="word-wrap: break-word;">
+            <strong><%=t.user_id%></strong>
+            <p class="lead"><%=" đã bình luận | #{time_ago_in_words(t.created_at.in_time_zone(7))} ago :"%></p>
+            <p><%= simple_format(t.content)%></p>
           </div>
         </div>
+        <%end%>
       </div>
-
-      <div class="container">
-        <div class="col-md-12">
-          <% if current_user %>
-          <%= form_for (@binhluan) do |f| %>
-          <%= f.text_area :content ,class: "form-control"%>
-          <%= f.hidden_field :truyen_id, :value => @truyen.id %>
-          <%= f.hidden_field :user_id, :value => "#{current_user.try(:first_name)} #{current_user.try(:last_name)}"%>
-          <br>
-          <%= f.submit "Gửi bình luận",class: "btn btn-default" %>
-          <%end%>
-          <%else%>
-          <textarea class= "form-control"></textarea>
-          <br>
-          <a href="<%=login_path%>" class="btn btn-default">Đăng nhập để bình luận</a>
-          <%end%>
-        </div>
-      </div>
-
-      <br>
-
-      <div class="container">
-        <div class="row">
-          <% @binhluans.each do |t|%>
-          <div class="container">
-            <div class="col-md-4 text-left">
-              <strong class="lead"><%=t.user_id%></strong>
-              <%=" đã bình luận | #{time_ago_in_words(t.created_at.in_time_zone(7))} ago :"%>
-            </div>
-            <div class="col-md-8 text-left" style="word-wrap: break-word;">
-              <h4><%= simple_format(t.content)%></h4>
-            </div>
-          </div>
-          <br>
-          <% end %>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <hr>
-          </div>
-          <p>FAM-Truyện Song Ngữ</p>
-        </div>
-      </div>
-
     </div>
-  </div>
 
-</body>
-</html>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    <script src="https://pingendo.com/assets/bootstrap/bootstrap-4.0.0-alpha.6.min.js"></script>
+  </body>
+
+  </html>
