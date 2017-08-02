@@ -15,7 +15,7 @@ default: &default
   pool: 5
   username: id2440441_truyendata
   password: truyendata
-  host: mysql12.000webhost.com
+  host: mysql13.000webhost.com
 
 development:
   <<: *default
